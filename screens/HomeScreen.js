@@ -1,7 +1,14 @@
+import { useNavigation } from '@react-navigation/native'
+import React, { useLayoutEffect } from 'react'
 import { View, Text } from 'react-native'
-import React from 'react'
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+  useLayoutEffect(() => {
+     navigation.setOptions({
+          headerShown: false,
+     })
+  }, [])
   return (
     <View>
       <Text>HomeScreen</Text>
