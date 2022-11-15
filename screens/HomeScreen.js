@@ -3,7 +3,7 @@ import React, { useLayoutEffect } from 'react'
 import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import tw from 'twrnc'
 import { AdjustmentsHorizontalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/solid'
-import { Categories } from '../components'
+import { Categories, FeaturedRows } from '../components'
 
 
 const HomeScreen = () => {
@@ -34,16 +34,28 @@ const HomeScreen = () => {
                     </View>
                     <View style={tw`flex flex-row items-center mt-3`}>
                          <View style={tw`bg-gray-200 flex-1 m-1 flex-row p-2 items-center`}>
-                              <MagnifyingGlassIcon color="gray"/>
-                              <TextInput style={tw` ml-2`} placeholder="Search Restaurants"/>
+                              <MagnifyingGlassIcon color="gray" />
+                              <TextInput style={tw` ml-2`} placeholder="Search Restaurants" />
                          </View>
-                         <AdjustmentsHorizontalIcon size={30} color="#e91e63"/>
+                         <AdjustmentsHorizontalIcon size={30} color="#e91e63" />
                     </View>
                </View>
                <ScrollView>
                     {/* categories */}
                     <Categories />
-                    {/* ... */}
+                    {/* Featured rows */}
+                    <FeaturedRows
+                         title="test 1"
+                         description="the test 1 description"
+                    />
+                    <FeaturedRows
+                         title="test 1"
+                         description="the test 1 description"
+                    />
+                    <FeaturedRows
+                         title="test 1"
+                         description="the test 1 description"
+                    />
                </ScrollView>
           </View>
      )
