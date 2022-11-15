@@ -9,7 +9,7 @@ export default function App() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-        <Stack.Navigator>
+         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
