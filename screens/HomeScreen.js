@@ -66,7 +66,7 @@ const HomeScreen = () => {
                </View>
                <ScrollView
                     contentContainerStyle={{
-                         paddingBottom: 140
+                         paddingBottom: 15
                     }}
                >
                     {/* categories */}
