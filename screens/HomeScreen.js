@@ -31,7 +31,7 @@ const HomeScreen = () => {
           }).catch(err => console.log(err))
      }, [])
 
-     console.log('featured categories:', featuredCategories);
+     // console.log('featured categories:', featuredCategories);
 
      return (
           <View>
@@ -61,25 +61,21 @@ const HomeScreen = () => {
                     </View>
                </View>
                <ScrollView
-                contentContainerStyle={{
-                    paddingBottom: 140
-                }}
+                    contentContainerStyle={{
+                         paddingBottom: 140
+                    }}
                >
                     {/* categories */}
                     <Categories />
                     {/* Featured rows */}
-                    <FeaturedRows
-                         title="Offers near you!"
-                         description="why not support your local restaurant tonight!"
-                    />
-                    <FeaturedRows
-                         title="Featured"
-                         description="paid placement from our partners"
-                    />
-                    <FeaturedRows
-                         title="Tasty Discounts"
-                         description="everyone been enjoying these juiky discounts"
-                    />
+                    {featuredCategories?.map(category => (
+                         <FeaturedRows
+                              key={category._id}
+                              id={category._id}
+                              title={category.name}
+                              description={category.short_description}
+                         />
+                    ))}
                </ScrollView>
           </View>
      )

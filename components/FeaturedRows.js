@@ -1,10 +1,34 @@
 import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ArrowRightIcon } from 'react-native-heroicons/solid'
 import tw from 'twrnc'
 import RestaurantCard from './RestaurantCard'
+import client from '../sanity'
 
-const FeaturedRows = ({ title, description }) => {
+const FeaturedRows = ({ id, title, description }) => {
+     const [restaurants, setRestaurants] = useState([]);
+
+     useEffect(() => {
+          client.fetch(
+               `
+               *[_type == "featured" && _id == $id] {
+                    ...,
+                    restaurants[]->{
+                    ...,
+                     dishes[]->,
+                    type-> {
+                    name
+                    }
+                }
+                }[0]
+                `
+               , { id }).then(data => {
+                    setRestaurants(data?.restaurants)
+               })
+     }, [])
+
+     console.log('restaurants:', restaurants);
+
      return (
           <View style={tw`mt-4`}>
                <View style={tw`flex-row items-center justify-between px-3`}>
@@ -22,30 +46,21 @@ const FeaturedRows = ({ title, description }) => {
                          paddingTop: 10
                     }}
                >
-                    <RestaurantCard
-                         id={123}
-                         imageUrl="https://links.papareact.com/gn7"
-                         title="Sadegh"
-                         rating={4.5}
-                         genre="iranian"
-                         address="tehran shahriar"
-                         short_description="this is test description"
-                         dishes={[]}
-                         long={20}
-                         lat={0}
-                    />
-                     <RestaurantCard
-                         id={123}
-                         imageUrl="https://links.papareact.com/gn7"
-                         title="Sadegh"
-                         rating={4.5}
-                         genre="iranian"
-                         address="tehran shahriar"
-                         short_description="this is test description"
-                         dishes={[]}
-                         long={20}
-                         lat={0}
-                    />
+                    {restaurants?.map(restaurant => (
+                         <RestaurantCard
+                              id={restaurant._id}
+                              key={restaurant._id}
+                              imageUrl={restaurant.image}
+                              title={restaurants.name}
+                              rating={restaurant.rating}
+                              genre={restaurant.type?.name}
+                              address={restaurant.address}
+                              short_description={restaurant.short_description}
+                              dishes={restaurant.dished}
+                              long={restaurant.log}
+                              lat={restaurant.lat}
+                         />
+                    ))}
                </ScrollView>
           </View>
      )
