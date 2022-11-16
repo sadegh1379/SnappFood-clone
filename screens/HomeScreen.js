@@ -5,7 +5,7 @@ import tw from 'twrnc'
 import { AdjustmentsHorizontalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/solid'
 import { Categories, FeaturedRows } from '../components'
 import client from '../sanity'
-
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const HomeScreen = () => {
      const [featuredCategories, setFeaturedCategories] = useState([]);
@@ -38,7 +38,7 @@ const HomeScreen = () => {
      }, [])
 
      return (
-          <View>
+          <SafeAreaView style={{ flex: 1 }}>
                {/* header top */}
                <View style={tw`bg-white p-2 `}>
                     {/* title */}
@@ -82,7 +82,7 @@ const HomeScreen = () => {
                          />
                     ))}
                </ScrollView>
-          </View>
+          </SafeAreaView>
      )
 }
 
