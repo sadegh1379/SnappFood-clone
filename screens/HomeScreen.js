@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { View, Text, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native'
 import tw from 'twrnc'
 import { AdjustmentsHorizontalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/solid'
 import { Categories, FeaturedRows } from '../components'
@@ -9,6 +9,7 @@ import client from '../sanity'
 
 const HomeScreen = () => {
      const [featuredCategories, setFeaturedCategories] = useState([]);
+     const [loading, setLoading] = useState(false);
      const navigation = useNavigation();
      useLayoutEffect(() => {
           navigation.setOptions({
@@ -16,6 +17,7 @@ const HomeScreen = () => {
           })
      }, [])
      useEffect(() => {
+          setLoading(true)
           client.fetch(
                `
                *[_type == "featured"] {
@@ -28,10 +30,12 @@ const HomeScreen = () => {
                `
           ).then(data => {
                setFeaturedCategories(data)
-          }).catch(err => console.log(err))
+               setLoading(false)
+          }).catch(err => {
+               setLoading(false)
+               console.log(err)
+          })
      }, [])
-
-     // console.log('featured categories:', featuredCategories);
 
      return (
           <View>
@@ -45,7 +49,7 @@ const HomeScreen = () => {
                                    <Text style={tw`text-xs text-gray-300`}>Deliver Now!</Text>
                                    <View style={tw`flex flex-row items-center`}>
                                         <Text style={tw`text-base font-bold`}>Current Location</Text>
-                                        <ChevronDownIcon style={tw`mt-1`} size={25} color="#e91e63" />
+                                        <ChevronDownIcon style={tw`mt-1`} size={25} color="#00CCBB" />
                                    </View>
                               </View>
                          </View>
@@ -68,7 +72,8 @@ const HomeScreen = () => {
                     {/* categories */}
                     <Categories />
                     {/* Featured rows */}
-                    {featuredCategories?.map(category => (
+                    {loading && <ActivityIndicator style={tw`mx-auto my-5`} color="#00CCBB" size={25} />}
+                    {!loading && featuredCategories?.map(category => (
                          <FeaturedRows
                               key={category._id}
                               id={category._id}

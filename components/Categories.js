@@ -1,8 +1,27 @@
-import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, ScrollView } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import CategoriCard from './CategoriCard'
+import client, { urlFor } from '../sanity';
+import tw from 'twrnc'
 
 const Categories = () => {
+     const [categories, setCategories] = useState([]);
+     const [loading, setLoading] = useState(false);
+
+     useEffect(() => {
+          setLoading(true)
+          client.fetch(
+               `
+               *[_type == "category"]
+               `
+          ).then(data => {
+               setLoading(true)
+               setCategories(data)
+               setLoading(false)
+          })
+          setLoading(false)
+     }, [])
+
      return (
           <ScrollView
                horizontal
@@ -12,8 +31,13 @@ const Categories = () => {
                     paddingTop: 10
                }}
           >
-               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, i) => (
-                    <CategoriCard key={i} imageUrl="https://links.papareact.com/gn7" title="sadegh" />
+               {loading && <ActivityIndicator style={tw`mx-auto my-5`} color="#00CCBB" size={25} />}
+               {!loading && categories?.map(category => (
+                    <CategoriCard
+                         key={category._id}
+                         imageUrl={urlFor(category.image).width(200).url()}
+                         title={category.name} />
+
                ))}
           </ScrollView>
      )

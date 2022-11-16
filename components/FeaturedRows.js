@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { ArrowRightIcon } from 'react-native-heroicons/solid'
 import tw from 'twrnc'
@@ -7,8 +7,9 @@ import client from '../sanity'
 
 const FeaturedRows = ({ id, title, description }) => {
      const [restaurants, setRestaurants] = useState([]);
-
+     const [loading, setLoading] = useState(false);
      useEffect(() => {
+          setLoading(true);
           client.fetch(
                `
                *[_type == "featured" && _id == $id] {
@@ -24,10 +25,10 @@ const FeaturedRows = ({ id, title, description }) => {
                 `
                , { id }).then(data => {
                     setRestaurants(data?.restaurants)
+                    setLoading(false);
                })
-     }, [])
-
-     console.log('restaurants:', restaurants);
+          setLoading(false);
+     }, [id])
 
      return (
           <View style={tw`mt-4`}>
@@ -43,10 +44,11 @@ const FeaturedRows = ({ id, title, description }) => {
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{
                          paddingHorizontal: 10,
-                         paddingTop: 10
+                         paddingTop: 10,
                     }}
                >
-                    {restaurants?.map(restaurant => (
+                    {loading && <ActivityIndicator style={tw`mx-auto`} color="#00CCBB" size={25} />}
+                    {!loading && restaurants?.map(restaurant => (
                          <RestaurantCard
                               id={restaurant._id}
                               key={restaurant._id}
