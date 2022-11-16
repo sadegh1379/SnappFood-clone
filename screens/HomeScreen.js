@@ -1,18 +1,38 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useEffect, useState } from 'react'
 import { View, Text, Image, TextInput, ScrollView } from 'react-native'
 import tw from 'twrnc'
 import { AdjustmentsHorizontalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/solid'
 import { Categories, FeaturedRows } from '../components'
+import client from '../sanity'
 
 
 const HomeScreen = () => {
+     const [featuredCategories, setFeaturedCategories] = useState([]);
      const navigation = useNavigation();
      useLayoutEffect(() => {
           navigation.setOptions({
                headerShown: false,
           })
      }, [])
+     useEffect(() => {
+          client.fetch(
+               `
+               *[_type == "featured"] {
+                    ...,
+                    restaurants[]->{
+                    ...,
+                     dishes[]->,
+                }
+                }
+               `
+          ).then(data => {
+               setFeaturedCategories(data)
+          }).catch(err => console.log(err))
+     }, [])
+
+     console.log('featured categories:', featuredCategories);
+
      return (
           <View>
                {/* header top */}
