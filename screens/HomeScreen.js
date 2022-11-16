@@ -30,31 +30,35 @@ const HomeScreen = () => {
                               </View>
                          </View>
                          {/* user avatar */}
-                         <UserIcon size={30} color="#e91e63" />
+                         <UserIcon size={30} color="#00DDBB" />
                     </View>
                     <View style={tw`flex flex-row items-center mt-3`}>
                          <View style={tw`bg-gray-200 flex-1 m-1 flex-row p-2 items-center`}>
                               <MagnifyingGlassIcon color="gray" />
                               <TextInput style={tw` ml-2`} placeholder="Search Restaurants" />
                          </View>
-                         <AdjustmentsHorizontalIcon size={30} color="#e91e63" />
+                         <AdjustmentsHorizontalIcon size={30} color="#00CCBB" />
                     </View>
                </View>
-               <ScrollView>
+               <ScrollView
+                contentContainerStyle={{
+                    paddingBottom: 140
+                }}
+               >
                     {/* categories */}
                     <Categories />
                     {/* Featured rows */}
                     <FeaturedRows
-                         title="test 1"
-                         description="the test 1 description"
+                         title="Offers near you!"
+                         description="why not support your local restaurant tonight!"
                     />
                     <FeaturedRows
-                         title="test 1"
-                         description="the test 1 description"
+                         title="Featured"
+                         description="paid placement from our partners"
                     />
                     <FeaturedRows
-                         title="test 1"
-                         description="the test 1 description"
+                         title="Tasty Discounts"
+                         description="everyone been enjoying these juiky discounts"
                     />
                </ScrollView>
           </View>

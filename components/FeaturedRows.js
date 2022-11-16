@@ -12,7 +12,7 @@ const FeaturedRows = ({ title, description }) => {
                          <Text style={tw`text-lg font-bold`}>{title}</Text>
                          <Text style={tw`text-xs text-gray-500`}>{description}</Text>
                     </View>
-                    <ArrowRightIcon style={tw`font-bold`} size={25} color="#e91e63" />
+                    <ArrowRightIcon style={tw`font-bold`} size={25} color="#00CCBB" />
                </View>
                <ScrollView
                     horizontal
@@ -22,14 +22,30 @@ const FeaturedRows = ({ title, description }) => {
                          paddingTop: 10
                     }}
                >
-                    <RestaurantCard />
-                    <RestaurantCard />
-                    <RestaurantCard />
-                    <RestaurantCard />
-                    <RestaurantCard />
-                    <RestaurantCard />
-                    <RestaurantCard />
-                    <RestaurantCard />
+                    <RestaurantCard
+                         id={123}
+                         imageUrl="https://links.papareact.com/gn7"
+                         title="Sadegh"
+                         rating={4.5}
+                         genre="iranian"
+                         address="tehran shahriar"
+                         short_description="this is test description"
+                         dishes={[]}
+                         long={20}
+                         lat={0}
+                    />
+                     <RestaurantCard
+                         id={123}
+                         imageUrl="https://links.papareact.com/gn7"
+                         title="Sadegh"
+                         rating={4.5}
+                         genre="iranian"
+                         address="tehran shahriar"
+                         short_description="this is test description"
+                         dishes={[]}
+                         long={20}
+                         lat={0}
+                    />
                </ScrollView>
           </View>
      )
