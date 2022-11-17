@@ -13,7 +13,7 @@ import { setRestaurant } from '../slices/restaurantSlice';
 const RestaurantScreen = () => {
      const navigation = useNavigation();
      const dispatch = useDispatch()
-
+     const { params } = useRoute()
      const { params: {
           id,
           imageUrl,
@@ -26,7 +26,6 @@ const RestaurantScreen = () => {
           long,
           lat,
      } } = useRoute();
-
      useLayoutEffect(() => {
           navigation.setOptions({
                headerShown: false,
@@ -46,7 +45,7 @@ const RestaurantScreen = () => {
                long,
                lat,
           }))
-     }, [])
+     }, [id])
 
      return (
           <>

@@ -7,10 +7,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc'
 import { XCircleIcon } from 'react-native-heroicons/outline';
 import * as Progress from 'react-native-progress'
+import MapView, { Marker } from 'react-native-maps';
 
 const DeliverScreen = () => {
      const navigation = useNavigation();
      const restaurant = useSelector(selectRestaurant);
+
      return (
           <View style={tw`flex-1 bg-[#00CCBB]`}>
                <SafeAreaView style={tw`z-50`}>
@@ -39,6 +41,39 @@ const DeliverScreen = () => {
                          <Progress.Bar style={tw`my-1`} indeterminate={true} size={10} color="#00CCBB" />
                          <Text style={tw`text-gray-400 mt-1`}>your order at {restaurant?.title} is being prepared</Text>
                     </View>
+               </SafeAreaView>
+               <MapView
+                    initialRegion={{
+                         latitude: 35.715298,
+                         longitude: 51.404343,
+                         latitudeDelta: 0.0922,
+                         longitudeDelta: 0.0421,
+                    }}
+                    mapType="mutedStandard"
+                    style={tw`flex-1 z-0 -mt-10`}
+               >
+                    <Marker
+                         coordinate={{
+                              latitude: 35.715298,
+                              longitude: 51.404343,
+                              latitudeDelta: 0.0922,
+                              longitudeDelta: 0.0421,
+                         }}
+                         title={restaurant.title}
+                         description={restaurant.short_description}
+                    />
+               </MapView>
+               <SafeAreaView style={tw`pb-4 h-20 w-full bg-white px-3 flex-row items-center`}>
+                    <Image 
+                    style={tw`h-10 w-10 rounded-full`}
+                    source={require('../assets/my-profile.jpg')}/>
+                    <View style={tw`flex-1 ml-4`}>
+                         <Text style={tw`text-lg font-bold`}>Sadegh Akbari</Text>
+                         <Text style={tw`text-gray-400`}>your rider</Text>
+                    </View>
+                    <TouchableOpacity>
+                         <Text style={tw`text-[#00CCBB]`}>Call</Text>
+                    </TouchableOpacity>
                </SafeAreaView>
           </View>
      )
