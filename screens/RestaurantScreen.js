@@ -32,7 +32,11 @@ const RestaurantScreen = () => {
      return (
           <>
                <BasketIcon />
-               <ScrollView>
+               <ScrollView
+                    contentContainerStyle={{
+                         paddingBottom: 100
+                    }}
+               >
                     {/* header */}
                     <View style={tw`relative`}>
                          <Image source={{
