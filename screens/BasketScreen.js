@@ -36,7 +36,7 @@ const BasketScreen = () => {
                          </View>
                          <TouchableOpacity
                               onPress={navigation.goBack}
-                              style={tw`bg-[#00CCBB] shadow-xs absolute top-6 right-3 rounded-full`}>
+                              style={tw`bg-[#00CCBB] absolute top-6 right-3 rounded-full`}>
                               <XCircleIcon size={40} color="#fff" />
                          </TouchableOpacity>
                     </View>
@@ -74,22 +74,24 @@ const BasketScreen = () => {
                     </ScrollView>
                     <View style={tw`bg-white p-4`}>
                          <View style={tw`flex-row items-center justify-between`}>
-                              <Text style={tw`text-xs text-gray-400`}>Subtotal</Text>
-                              <Text style={tw`text-xs text-gray-400`}>
+                              <Text style={tw`text-gray-400`}>Subtotal</Text>
+                              <Text style={tw`text-gray-400`}>
                                    <Currency quantity={subTotal} currency="USD"/>
                               </Text>
                          </View>
                          <View style={tw`flex-row items-center justify-between my-2`}>
-                              <Text style={tw`text-xs text-gray-400`}>Delivery Free</Text>
-                              <Text style={tw`text-xs text-gray-400`}>$50</Text>
+                              <Text style={tw`text-gray-400`}>Delivery Free</Text>
+                              <Text style={tw`text-gray-400`}>$50</Text>
                          </View>
                          <View style={tw`flex-row items-center justify-between`}>
-                              <Text style={tw`text-xs font-bold`}>Order Total</Text>
-                              <Text style={tw`text-xs font-bold`}>
+                              <Text style={tw`font-bold`}>Order Total</Text>
+                              <Text style={tw`font-bold`}>
                                    <Currency quantity={subTotal + 50} currency="USD"/>
                               </Text>
                          </View>
-                         <TouchableOpacity style={tw`bg-[#00CCBB] rounded-md p-3 mt-4`}>
+                         <TouchableOpacity
+                         onPress={() => navigation.navigate('Preparing')}
+                         style={tw`bg-[#00CCBB] rounded-md p-3 mt-4`}>
                               <Text style={tw`text-white font-bold text-xl text-center`}>Place Order</Text>
                          </TouchableOpacity>
                     </View>
