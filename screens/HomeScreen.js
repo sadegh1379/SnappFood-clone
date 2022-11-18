@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { View, Text, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native'
+import { View, Text, Image, TextInput, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native'
 import tw from 'twrnc'
 import { AdjustmentsHorizontalIcon, ChevronDownIcon, MagnifyingGlassIcon, UserIcon } from 'react-native-heroicons/solid'
 import { Categories, FeaturedRows } from '../components'
@@ -54,7 +54,9 @@ const HomeScreen = () => {
                               </View>
                          </View>
                          {/* user avatar */}
-                         <UserIcon size={30} color="#00DDBB" />
+                         <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+                              <UserIcon size={30} color="#00DDBB" />
+                         </TouchableOpacity>
                     </View>
                     <View style={tw`flex flex-row items-center mt-3`}>
                          <View style={tw`bg-gray-200 flex-1 m-1 flex-row p-2 items-center`}>

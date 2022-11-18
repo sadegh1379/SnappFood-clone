@@ -7,6 +7,7 @@ import {
   BasketScreen,
   PreparingOrderScreen,
   DeliverScreen,
+  NotificationScreen,
 } from './screens';
 import { store } from './store';
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Restaurant" component={RestaurantScreen} />
+          <Stack.Screen name="Notification" component={NotificationScreen} />
           <Stack.Screen
             options={{
               headerShown: false,
