@@ -25,6 +25,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDKInVb2uLAUlYkuhhKTVjUxf1oEA5_jLs"
+        }
+      },
       "package": "com.sadegh79.snappFood"
     },
     "web": {

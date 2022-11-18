@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'twrnc'
 import { XCircleIcon } from 'react-native-heroicons/outline';
 import * as Progress from 'react-native-progress'
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 const DeliverScreen = () => {
      const navigation = useNavigation();
@@ -49,6 +49,7 @@ const DeliverScreen = () => {
                          latitudeDelta: 0.0922,
                          longitudeDelta: 0.0421,
                     }}
+                    provider={PROVIDER_GOOGLE}
                     mapType="mutedStandard"
                     style={tw`flex-1 z-0 -mt-10`}
                >

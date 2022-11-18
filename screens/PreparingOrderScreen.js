@@ -18,19 +18,19 @@ const PreparingOrderScreen = () => {
           <SafeAreaView style={tw`flex-1`}>
                <View style={tw`flex-1 bg-white justify-center items-center`}>
                     <Animatable.Image
-                         source={require('../assets/preparing.gif')}
-                         style={tw`h-96 w-96`}
+                         source={require('../assets/preparing.png')}
+                         style={tw`h-30 w-30 mb-10 rounded-full`}
                          animation="slideInUp"
                          iterationCount={1}
                     />
                     <Animatable.Text
                          animation="slideInUp"
                          iterationCount={1}
-                         style={tw`font-bold text-[#00CCBB] mb-5`}
+                         style={tw`font-bold text-[#00CCBB] mb-7`}
                     >
                          Wating for restaurant to accept your order
                     </Animatable.Text>
-                    <Progress.CircleSnail indeterminate={true} size={60} color="#00CCBB" />
+                    <Progress.Bar indeterminate={true} size={60} color="#00CCBB" />
                </View>
           </SafeAreaView>
      )
