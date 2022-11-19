@@ -15,6 +15,7 @@
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",
     "expo": "~47.0.3",
+    "expo-dev-client": "~2.0.0",
     "expo-device": "~5.0.0",
     "expo-notifications": "~0.17.0",
     "expo-status-bar": "~1.4.2",

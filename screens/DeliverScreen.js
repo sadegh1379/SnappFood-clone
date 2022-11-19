@@ -50,7 +50,6 @@ const DeliverScreen = () => {
                          longitudeDelta: 0.0421,
                     }}
                     provider={PROVIDER_GOOGLE}
-                    mapType="mutedStandard"
                     style={tw`flex-1 z-0 -mt-10`}
                >
                     <Marker
