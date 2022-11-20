@@ -1,6 +1,8 @@
 node_modules/
 .expo/
 dist/
+apk/
+myapp-googleplay.json
 npm-debug.*
 *.jks
 *.p8
